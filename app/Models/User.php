@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Task;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,4 +19,13 @@ class User extends Authenticatable
      */
     protected $guarded = [];
     protected $table   = "users";
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function pomodoroSessions()
+    {
+        return $this->hasMany(PomodoroSession::class);
+    }
 }

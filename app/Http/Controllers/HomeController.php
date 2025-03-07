@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Task;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tasks = Task::where('user_id', auth()->id())->get();
+        return view('home', compact('tasks'));
+       
     }
 }
